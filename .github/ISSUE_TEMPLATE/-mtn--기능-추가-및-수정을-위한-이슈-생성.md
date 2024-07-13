@@ -2,7 +2,7 @@
 name: "[MTN] 기능 추가 및 수정을 위한 이슈 생성"
 about: 기능 추가 및 수정
 title: "[MTN] "
-labels: ''
+labels: maintenance
 assignees: SeongukBaek
 
 ---
