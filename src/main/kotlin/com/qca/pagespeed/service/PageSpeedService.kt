@@ -5,7 +5,10 @@ import com.qca.pagespeed.mapper.PageSpeedRecordMapper
 import com.qca.pagespeed.mapper.PageSpeedRequestHistoryMapper
 import com.qca.pagespeed.model.PageSpeedRequest
 import com.qca.pagespeed.model.PageSpeedResponse
+import mu.KotlinLogging
 import org.springframework.stereotype.Service
+
+private val LOGGER = KotlinLogging.logger {}
 
 @Service
 class PageSpeedService(
@@ -14,7 +17,11 @@ class PageSpeedService(
     private val pageSpeedRecordMapper: PageSpeedRecordMapper,
 ) {
     fun runPageSpeed(request: PageSpeedRequest): PageSpeedResponse? {
+        LOGGER.info { "[PageSpeedService] runPageSpeed request : $request" }
+
         val response = pageSpeedApi.callPageSpeedApi(request)
+
+        LOGGER.info { "[PageSpeedService] PageSpeedApi response : $response" }
 
         pageSpeedRequestHistoryMapper.insertPageSpeedRequestHistory(request)
 
