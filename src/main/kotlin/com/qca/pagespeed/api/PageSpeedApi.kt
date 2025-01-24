@@ -1,7 +1,7 @@
 package com.qca.pagespeed.api
 
-import com.qca.pagespeed.model.PageSpeedRunRequest
-import com.qca.pagespeed.model.PageSpeedRunResponse
+import com.qca.pagespeed.model.PageSpeedRequest
+import com.qca.pagespeed.model.PageSpeedResponse
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 
@@ -9,20 +9,20 @@ import org.springframework.web.reactive.function.client.WebClient
 class PageSpeedApi(
     private val webClient: WebClient,
 ) {
-    fun callPageSpeedApi(request: PageSpeedRunRequest): PageSpeedRunResponse? {
-        return webClient.get()
+    fun callPageSpeedApi(request: PageSpeedRequest): PageSpeedResponse? =
+        webClient
+            .get()
             .uri { uriBuilder ->
                 uriBuilder
                     .path(PAGE_SPEED_ONLINE_URL)
-                    .queryParam("url", request.url)
+                    .queryParam(URL, request.url)
                     .build()
-            }
-            .retrieve()
-            .bodyToMono(PageSpeedRunResponse::class.java)
+            }.retrieve()
+            .bodyToMono(PageSpeedResponse::class.java)
             .block()
-    }
 
     companion object {
         const val PAGE_SPEED_ONLINE_URL = "/pagespeedonline/v5/runPagespeed"
+        const val URL = "url"
     }
 }

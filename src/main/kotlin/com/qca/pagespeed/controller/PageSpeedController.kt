@@ -1,10 +1,11 @@
 package com.qca.pagespeed.controller
 
-import com.qca.pagespeed.model.PageSpeedRunRequest
+import com.qca.pagespeed.model.PageSpeedRequest
 import com.qca.pagespeed.service.PageSpeedService
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController
 class PageSpeedController(
     val pageSpeedService: PageSpeedService,
 ) {
-    @GetMapping("/run")
+    @PostMapping("/run")
     fun runPageSpeed(
-        @Valid
-        request: PageSpeedRunRequest,
+        @RequestBody @Valid
+        request: PageSpeedRequest,
     ) = ResponseEntity.ok(pageSpeedService.runPageSpeed(request))
 }

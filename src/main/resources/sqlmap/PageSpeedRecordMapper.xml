@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qca.pagespeed.mapper.PageSpeedRecordMapper">
+    <insert id="insertPageSpeedRecord" useGeneratedKeys="true" keyProperty="seq">
+        INSERT INTO page_speed_record (captcha_result, kind, id, analysis_utc_time_stamp, reg_user, reg_date, mod_user, mod_date)
+        VALUES (
+            #{captchaResult},
+            #{kind},
+            #{id},
+            #{analysisUtcTimeStamp},
+            'SYSTEM',
+            NOW(),
+            'SYSTEM',
+            NOW()
+        )
+    </insert>
+</mapper>
