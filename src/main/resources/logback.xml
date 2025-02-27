@@ -6,6 +6,11 @@
         </encoder>
     </appender>
     <appender name="rollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
         <file>src/main/resources/application.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>src/main/resources/application.%d{yyyyMMdd}.log</fileNamePattern>
@@ -16,18 +21,9 @@
         </encoder>
     </appender>
 
-    <logger name="com.qca" level="DEBUG"/>
-    <logger name="org.springframework" level="INFO"/>
-    <logger name="org.springframework.web" level="DEBUG"/>
-    <logger name="org.springframework.http" level="DEBUG"/>
-    <logger name="com.zaxxer.hikari" level="INFO"/>
-    <logger name="org.apache.coyote" level="INFO"/>
-    <logger name="io.netty.util" level="INFO"/>
-
     <root level="DEBUG">
         <appender-ref ref="consoleAppender"/>
-    </root>
-    <root level="DEBUG">
         <appender-ref ref="rollingFileAppender"/>
     </root>
+
 </configuration>
