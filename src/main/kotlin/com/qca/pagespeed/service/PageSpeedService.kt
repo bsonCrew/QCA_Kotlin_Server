@@ -17,11 +17,11 @@ class PageSpeedService(
     private val pageSpeedRecordMapper: PageSpeedRecordMapper,
 ) {
     fun runPageSpeed(request: PageSpeedRequest): PageSpeedResponse? {
-        LOGGER.info { "[PageSpeedService] runPageSpeed request : $request" }
+        LOGGER.info { "[runPageSpeed] request : $request" }
 
         val response = pageSpeedApi.callPageSpeedApi(request)
 
-        LOGGER.info { "[PageSpeedService] PageSpeedApi response : $response" }
+        LOGGER.info { "[runPageSpeed] api response : $response" }
 
         pageSpeedRequestHistoryMapper.insertPageSpeedRequestHistory(request)
 
