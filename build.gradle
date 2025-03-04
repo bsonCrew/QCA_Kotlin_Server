@@ -37,6 +37,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
 	// other
+	implementation 'io.github.microutils:kotlin-logging-jvm:3.0.5'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
@@ -68,8 +69,8 @@ tasks.jacocoTestReport {
 	}
 }
 
-tasks.withType(KotlinCompile) {
-	kotlinOptions {
+tasks.withType(KotlinCompile).configureEach {
+	{
 		freeCompilerArgs += '-Xjsr305=strict'
 		jvmTarget = '17'
 	}
